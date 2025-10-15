@@ -1,48 +1,235 @@
-*{
-    padding: 0;
-    margin: 0;
+/* --- Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body, html {
-    margin: 0; 
-    padding: 0; 
-    height: 100%; 
-    font-family: Arial, sans-serif;
- }
-#map { 
-    height: 100%; 
-    width: 80%; 
-    float: right; 
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0d0d0d;
+  color: #fff;
 }
-#sidebar {
-    width: 20%; 
-    height: 100%; 
-    float: left;
-    background: #030e4d; 
-    padding: 15px; 
-    box-sizing: border-box;
-    border-right: 2px solid #ddd; 
-    overflow-y: auto;
+
+/* --- Header --- */
+header {
+  background-color: #27272d;
 }
-h2 { 
-    margin-top: 0; 
+
+nav {
+  width: 85%;
+  margin: auto;
 }
-input {
-    width: 100%; 
-    padding: 8px;
-    margin-bottom: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc; 
-    border-radius: 4px;
-            
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
 }
-.place {
-    padding: 8px; 
-    margin-bottom: 5px;
-    background: #fff; 
-    border: 1px solid #ccc;
-    border-radius: 4px; 
-    cursor: pointer;
+
+/* --- Logo --- */
+#logo {
+  max-height: clamp(36px, 6vw, 72px);
+  height: auto;
+  width: auto;
+  display: block;
 }
-.place:hover { 
-    background: #e0e0e0; 
+
+/* --- Nav Links --- */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: '';
+  width: 0;
+  height: 2px;
+  background: red;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: 0.5s;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* --- Hamburger Icon --- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  width: 28px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s ease;
+}
+
+/* --- Hero Section --- */
+.hero {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 80px;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-text h1 {
+  font-size: 60px;
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+.hero-text h1 span.red {
+  background: linear-gradient(to right, #FF0000, #990000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-text h1 span.gradient {
+  background: linear-gradient(to right, #2cd4d9, #8a2de2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.features {
+  width: 561px;
+  background-color: #1a1a1a;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+.features h3 {
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.features ul {
+  list-style: none;
+}
+
+.features ul li {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.map {
+  max-width: 50%;
+}
+
+.map-illustration {
+  width: 600px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* --- Mobile Responsive (360px x 640px) --- */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+ .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 0;
+    transform: translateY(-200%);
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+
+ .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+ /* Animate hamburger into X */
+ .menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Stack hero section */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+ .features {
+    width: 100%;
+  }
+
+ .map {
+   max-width: 100%;
+   margin-top: 20px;
+  }
+
+.map-illustration {
+  width: 100%;
+  }
+}
+
+/* --- For very small phones (360x640) --- */
+@media (max-width: 400px) {
+  .nav-links li a {
+    font-size: 18px;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+
+  .features h3 {
+    font-size: 24px;
+  }
+
+  .features ul li {
+    font-size: 20px;
+  }
 }
